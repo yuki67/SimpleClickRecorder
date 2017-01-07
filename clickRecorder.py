@@ -29,23 +29,27 @@ class ClickRecorder(object):
         self.root.geometry("%dx%d+%d+%d" % (width, height, 0, 0))
         self.frame = tkinter.Frame(self.root, width=width, height=height)
         # コールバック関数に複数の引数を渡す小技
-        self.frame.bind("<Button-1>", lambda event: self.onClick(event))
+        self.frame.bind("<Button-1>", lambda event: self.onLeftClick(event))
+        self.frame.bind("<Button-3>", lambda event: self.onRightClick(event))
         self.frame.pack()
 
-    def onClick(self, event):
-        self.addPointToFile(event.x, event.y)
+    def onLeftClick(self, event):
+        self.addPointToFile(1, event.x, event.y)
+
+    def onRightClick(self, event):
+        self.addPointToFile(3, event.x, event.y)
 
     def startFile(self):
         # pythonソースコードの先頭部分を書く
         self.file.write('record = [')
 
-    def addPointToFile(self, x, y):
-        # pythonソースコードに[x, y]を追加する
+    def addPointToFile(self, num, x, y):
+        # pythonソースコードに[num, x, y]を追加する
         dx = self.root.winfo_rootx()  # ウィンドウのずれを補正
         dy = self.root.winfo_rooty()
-        print("Logging : %d, %d" % (x + dx, y + dy))
+        print("Logging : %d, %d, %d" % (num, x + dx, y + dy))
         # pythonでは[a,b]を[a, b,]と書いても問題ない
-        self.file.write("[%d, %d], " % (x + dx, y + dy))
+        self.file.write("[%d, %d, %d], " % (num, x + dx, y + dy))
 
     def endFile(self):
         # pythonソースコードの末尾部分を書く
