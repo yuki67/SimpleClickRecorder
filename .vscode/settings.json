@@ -1,0 +1,12 @@
+// 既定の設定とユーザー設定を上書きするには、このファイル内に設定を挿入します
+{
+    "python.pythonPath": "C:/Users/iiyuk/Documents/virtualenv/defaultglobal/Scripts/python.exe",
+    "python.formatting.provider": "autopep8",
+    "python.formatting.formatOnSave": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.pep8Enabled": false,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--rcfile=.vscode/.pylintrc"
+    ]
+}
