@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
 import tkinter
-import time
-import datetime
 
 
 class ClickRecorder(object):
+
     def __init__(self, filename="log", rate=None):
         self.filename = os.path.abspath('.\\' + filename + '.py')
         self.rate = rate
@@ -17,7 +16,7 @@ class ClickRecorder(object):
         self.setUpRoot()
         with open(self.filename, mode='w') as self.file:
             self.startFile()
-            self.root.mainloop() #ウィンドウが消えるとmainloopから抜ける
+            self.root.mainloop()  # ウィンドウが消えるとmainloopから抜ける
             self.endFile()
 
     def setUpRoot(self):
